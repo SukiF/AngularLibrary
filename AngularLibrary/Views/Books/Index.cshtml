@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div ng-controller="AngularBooksController">
+    <h2>{{Title}}</h2>
+    <button type="button" class="btn btn btn-sm" data-toggle="modal" data-target="#NewBookModal" ng-click="OpenAddBookModal(book)">Add Book</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    Title
+                </td>
+                <td>
+                    Author
+                </td>
+                <td>
+                    Pages
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in BooksList">
+                <td>
+                    {{book.BookTitle}}
+                </td>
+                <td>
+                    {{book.BookAuthor}}
+                </td>
+                <td>
+                    {{book.BookPages}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn btn-sm" data-toggle="modal" data-target="#myModal"
+                            ng-click="OpenModal(book)">
+                        Edit Book
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn btn-sm" ng-click="DeleteBook(book)">Delete Book
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit: {{BookToEdit.BookTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <lable for="BookTitle"> Title </lable>
+                    <input ng-model="BookToEdit.BookTitle" type="text" name="BookTitle" />
+                    <br />
+                    <lable for="BookAuthor"> Author </lable>
+                    <input ng-model="BookToEdit.BookAuthor" type="text" name="BookAuthor" />
+                    <br />
+                    <lable for="BookPages"> Number of pages </lable>
+                    <input ng-model="BookToEdit.BookPages" type="text" name="BookPages" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn-sm" data-dismiss="modal" ng-click="EditBook()">Save</button>
+                    <button type="button" class="btn btn btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="NewBookModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add a Book: {{NewBook.BookTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <lable for="BookTitle"> Title </lable>
+                    <input ng-model="NewBook.BookTitle" type="text" name="BookTitle" />
+                    <br />
+                    <lable for="BookAuthor"> Author </lable>
+                    <input ng-model="NewBook.BookAuthor" type="text" name="BookAuthor" />
+                    <br />
+                    <lable for="BookPages"> Number of pages </lable>
+                    <input ng-model="NewBook.BookPages" type="text" name="BookPages" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn-sm" data-dismiss="modal" ng-click="AddBook()">Save</button>
+                    <button type="button" class="btn btn btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="~/Scripts/Libraryjs/AngularBooksController.js"></script>
